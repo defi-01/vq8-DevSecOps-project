@@ -1,3 +1,3 @@
 path "vq8-secrets/*" {
-  capabilities = ["read"]
+  capabilities = ["read"] 
 }
