@@ -40,4 +40,4 @@ docker exec -e VAULT_TOKEN=root vault vault read auth/approle/role/jenkins/role-
 echo "Jenkins Secret ID:"
 docker exec -e VAULT_TOKEN=root vault vault write -f auth/approle/role/jenkins/secret-id
 
-echo "Setup complete!"
+echo "Setup complete!" 
