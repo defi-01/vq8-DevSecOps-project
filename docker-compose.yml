@@ -1,0 +1,28 @@
+services:
+  vault:
+    image: docker.io/hashicorp/vault:1.19.0@sha256:bbb7f98dc67d9ebdda1256de288df1cb9a5450990e48338043690bee3b332c90
+    container_name: vault
+    ports:
+      - "8200:8200"
+    environment:
+      - VAULT_DEV_ROOT_TOKEN_ID=root
+      - VAULT_ADDR=http://127.0.0.1:8200
+    command: server -dev
+    volumes:
+      - .:/vault/config
+    cap_add:
+      - IPC_LOCK
+
+  jenkins:
+    image: docker.io/jenkins/jenkins:2.503-jdk21@sha256:96390b7b46f57566af5b1a194bdb733c8fbbd3394de91f9b1b8ebe9480d010a3
+    container_name: jenkins
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - jenkins-data:/var/jenkins_home
+
+volumes:
+  vault-data:
+  jenkins-data:
